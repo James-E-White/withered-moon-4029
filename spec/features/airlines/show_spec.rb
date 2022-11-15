@@ -9,7 +9,7 @@ RSpec.describe "Airlines show page", type: :feature do
 # # And I see that this list is unique (no duplicate passengers)
 # # And I see that this list only includes adult passengers
 # # (Note: an adult is anyone with age greater than or equal to 18)
-    before(:each) do
+   before(:each) do
     @passenger_1 = Passenger.create!(name: 'Arnold', age: 50)
     @passenger_2 = Passenger.create!(name: 'Debbie', age: 52)
     @passenger_3 = Passenger.create!(name: 'Rex', age: 25)
@@ -48,29 +48,30 @@ RSpec.describe "Airlines show page", type: :feature do
 
    describe 'When I visit the airlines show page i see a lot of passengers information' do 
      it 'I see a list of all the passengers that have flights' do 
-      visit airlines_path
+      visit airline_path(@airline_1.id)
       expect(page).to have_content(@passenger_1.name)
       expect(page).to have_content(@passenger_2.name)
-      expect(page).to have_content(@passenger_3.name)
+    
       expect(page).to have_content(@passenger_4.name)
-      expect(page).to have_content(@passenger_5.name)
+   
       save_and_open_page
      end
     end
 
       it 'shows no duplicate passengers' do 
+        visit airline_path(@airline_1.id)
         expect(page).to have_content(@passenger_1.name)
         expect(page).to have_content(@passenger_2.name)
-        expect(page).to have_content(@passenger_3.name)
+       
         expect(page).to have_content(@passenger_4.name)
-        expect(page).to have_content(@passenger_5.name)
+        
       end
 
       it 'shows only passengers that are 18+ adults' do 
-        
+        visit airline_path(@airline_1.id)
         expect(page).to have_content(@passenger_1.name)
         expect(page).to have_content(@passenger_2.name)
-        expect(page).to have_content(@passenger_3.name)
+     
         expect(page).to have_content(@passenger_4.name)
 
         expect(page).to_not have_content(@passenger_5.name)

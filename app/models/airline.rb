@@ -5,6 +5,6 @@ class Airline < ApplicationRecord
 
 
   def passenger_list
-    passengers.where('age >= 18').distinct.pluck(:name)
+    passengers.where('age >= 18').distinct
   end
 end

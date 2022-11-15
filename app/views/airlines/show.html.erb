@@ -2,7 +2,8 @@
 
 <div>
   <ul>
-  <% @passengers.each do |passenger| %>
+
+  <% @airline.passenger_list.each do |passenger| %>
     <li>Name: <%= passenger.name %>  </li>
     <li>Age: <%= passenger.age %> </li>
   </ul>
